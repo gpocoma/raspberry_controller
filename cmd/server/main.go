@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	"raspberry-controller/stats_app/routes"
 	"github.com/gin-gonic/gin"
+	"raspberry-controller/server"
 )
 
 func main() {
@@ -11,7 +11,7 @@ func main() {
 	r := gin.Default()
 
 	// Configurar las rutas
-	routes.SetupRoutes(r)
+	server.SetupRoutes(r)
 
 	// Iniciar el servidor en el puerto 3000
 	if err := r.Run(":3000"); err != nil {

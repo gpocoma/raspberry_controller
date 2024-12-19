@@ -5,7 +5,7 @@ import (
     "raspberry-controller/stats_app/controllers"
 )
 
-func SetupRoutes(r *gin.Engine) {
+func SetupStatsRoutes(r *gin.Engine) {
     // Grupo de rutas para stats_app
     statsGroup := r.Group("/stats")
     {

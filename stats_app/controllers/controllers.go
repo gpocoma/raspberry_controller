@@ -3,10 +3,7 @@ package controllers
 import (
     "net/http"
     "github.com/gin-gonic/gin"
-    "github.com/shirou/gopsutil/cpu"
-    "github.com/shirou/gopsutil/mem"
-	"github.com/shirou/gopsutil/host"
-    "time"
+    "raspberry-controller/stats_app/services"
 )
 
 func TestService(context *gin.Context) {
@@ -16,7 +13,7 @@ func TestService(context *gin.Context) {
 }
 
 func RamUsageService(context *gin.Context) {
-    v, err := mem.VirtualMemory()
+    data, err := services.GetRamUsage()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -24,16 +21,11 @@ func RamUsageService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{
-        "totalMB":     v.Total / 1024 / 1024,
-        "usedMB":      v.Used / 1024 / 1024,
-        "freeMB":      v.Free / 1024 / 1024,
-        "usedPercent": v.UsedPercent,
-    })
+    context.JSON(http.StatusOK, data)
 }
 
 func CpuUsageService(context *gin.Context) {
-    percentages, err := cpu.Percent(1*time.Second, false)
+    data, err := services.GetCpuUsage()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -41,13 +33,11 @@ func CpuUsageService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{
-        "cpuUsagePercent": percentages[0],
-    })
+    context.JSON(http.StatusOK, data)
 }
 
 func SystemInfoService(context *gin.Context) {
-    info, err := host.Info()
+    data, err := services.GetSystemInfo()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -55,22 +45,11 @@ func SystemInfoService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{
-        "hostname":       info.Hostname,
-        "uptime":         info.Uptime,
-        "bootTime":       info.BootTime,
-        "os":             info.OS,
-        "platform":       info.Platform,
-        "platformFamily": info.PlatformFamily,
-        "platformVersion": info.PlatformVersion,
-        "kernelVersion":  info.KernelVersion,
-        "virtualizationSystem": info.VirtualizationSystem,
-        "virtualizationRole":   info.VirtualizationRole,
-    })
+    context.JSON(http.StatusOK, data)
 }
 
 func CpuTemperatureService(context *gin.Context) {
-    sensors, err := host.SensorsTemperatures()
+    data, err := services.GetCpuTemperature()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -78,16 +57,5 @@ func CpuTemperatureService(context *gin.Context) {
         return
     }
 
-    for _, sensor := range sensors {
-        if sensor.SensorKey == "cpu_thermal" {
-            context.JSON(http.StatusOK, gin.H{
-                "cpuTemperature": sensor.Temperature,
-            })
-            return
-        }
-    }
-
-    context.JSON(http.StatusNotFound, gin.H{
-        "error": "CPU temperature sensor not found",
-    })
+    context.JSON(http.StatusOK, data)
 }
