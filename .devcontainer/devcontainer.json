@@ -14,7 +14,8 @@
                 "github.vscode-pull-request-github",
                 "eamodio.gitlens",
                 "dotenv.dotenv-vscode",
-                "GitHub.copilot-chat"
+                "GitHub.copilot-chat",
+                "golang.go"
             ],
             "settings": {
                 "editor.tabSize": 4,
