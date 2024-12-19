@@ -1,0 +1,12 @@
+services:
+  api-raspberry:
+    container_name: api-raspberry
+    build:
+      context: ..
+      dockerfile: DockerfileDevContainer
+    volumes:
+      - ../../.:/app
+    command: sleep infinity
+    restart: unless-stopped
+    ports:
+      - 3000:3000

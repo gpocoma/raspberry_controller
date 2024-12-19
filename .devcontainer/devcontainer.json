@@ -1,0 +1,31 @@
+{
+    "name": "Raspberry Controller Dev Container",
+    "dockerComposeFile": "../docker/devcontainer/docker-compose.yaml",
+    "service": "api-raspberry",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vivaxy.vscode-conventional-commits",
+                "aaron-bond.better-comments",
+                "johnpapa.vscode-peacock",
+                "miguelsolorio.fluent-icons",
+                "usernamehw.errorlens",
+                "github.vscode-pull-request-github",
+                "eamodio.gitlens",
+                "dotenv.dotenv-vscode",
+                "GitHub.copilot-chat"
+            ],
+            "settings": {
+                "editor.tabSize": 4,
+                "terminal.integrated.shell.linux": "bin/zsh",
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "conventionalCommits.scopes": [
+                    "sysadmin"
+                ],
+                "peacock.color": "#1857a4",
+                "peacock.remoteColor": "#1857a4",
+            }
+        }
+    }
+}

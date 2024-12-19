@@ -1,0 +1,11 @@
+FROM golang:alpine3.21
+
+WORKDIR /app
+
+RUN apk update
+RUN apk add --no-cache git
+RUN apk add --no-cache zsh
+RUN apk add --no-cache bat
+RUN apk add --no-cache curl
+
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
