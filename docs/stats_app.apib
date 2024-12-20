@@ -1,0 +1,60 @@
+FORMAT: 1A
+HOST: http://localhost:3000
+
+# Raspberry Controller API
+
+API para controlar y monitorear un Raspberry Pi.
+
+## Stats [/stats]
+
+### Verifica si el servicio está en funcionamiento [GET]
+
++ Response 200 (application/json)
+
+        {
+            "message": "Service is running"
+        }
+
+### Obtiene el uso de RAM [GET /stats/ram-usage]
+
++ Response 200 (application/json)
+
+        {
+            "totalMB": 8000,
+            "usedMB": 4000,
+            "freeMB": 4000,
+            "usedPercent": 50.0
+        }
+
+### Obtiene el uso de CPU [GET /stats/cpu-usage]
+
++ Response 200 (application/json)
+
+        {
+            "cpuUsagePercent": 0.2
+        }
+
+### Obtiene la información del sistema [GET /stats/system-info]
+
++ Response 200 (application/json)
+
+        {
+            "hostname": "raspberrypi",
+            "uptime": 3600,
+            "bootTime": 1609459200,
+            "os": "Linux",
+            "platform": "Raspberry Pi",
+            "platformFamily": "Debian",
+            "platformVersion": "10",
+            "kernelVersion": "5.4.51-v7l+",
+            "virtualizationSystem": "none",
+            "virtualizationRole": "none"
+        }
+
+### Obtiene la temperatura de la CPU [GET /stats/cpu-temperature]
+
++ Response 200 (application/json)
+
+        {
+            "cpuTemperature": 45.0
+        }

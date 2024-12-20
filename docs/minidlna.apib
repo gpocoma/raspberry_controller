@@ -1,0 +1,22 @@
+FORMAT: 1A
+HOST: http://example.com
+
+# MiniDLNA API
+
+## Group MiniDLNA
+Endpoints para controlar el servicio MiniDLNA.
+
+### Minidlna Status Service [GET /minidlna/]
++ Response 200 (application/json)
+    + Attributes
+        + status: `running` (string, required) - Estado del contenedor minidlna
+
+### Start Minidlna Service [POST /minidlna/start]
++ Response 200 (application/json)
+    + Attributes
+        + message: `MiniDLNA started successfully` (string, required)
+
+### Stop Minidlna Service [POST /minidlna/stop]
++ Response 200 (application/json)
+    + Attributes
+        + message: `MiniDLNA stopped successfully` (string, required)

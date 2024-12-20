@@ -15,7 +15,8 @@
                 "eamodio.gitlens",
                 "dotenv.dotenv-vscode",
                 "GitHub.copilot-chat",
-                "golang.go"
+                "golang.go",
+                "develiteio.api-blueprint-viewer"
             ],
             "settings": {
                 "editor.tabSize": 4,
@@ -25,7 +26,7 @@
                     "sysadmin"
                 ],
                 "peacock.color": "#1857a4",
-                "peacock.remoteColor": "#1857a4",
+                "peacock.remoteColor": "#1857a4"
             }
         }
     }

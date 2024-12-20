@@ -1,0 +1,31 @@
+FORMAT: 1A
+HOST: http://example.com
+
+# Transmission API
+
+## Group Transmission
+Endpoints for managing the Transmission container.
+
+### Transmission Status [/transmission/]
+#### Get Status [GET]
++ Response 200 (application/json)
+    + Body
+            {
+                "status": "running"
+            }
+
+### Start Transmission [/transmission/start]
+#### Start Container [POST]
++ Response 200 (application/json)
+    + Body
+            {
+                "message": "Transmission container started"
+            }
+
+### Stop Transmission [/transmission/stop]
+#### Stop Container [POST]
++ Response 200 (application/json)
+    + Body
+            {
+                "message": "Transmission container stopped"
+            }
