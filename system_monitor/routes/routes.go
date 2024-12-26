@@ -14,7 +14,7 @@ func SetupSystemMonitorRoutes(r *gin.Engine) {
         systemMonitorGroup.GET("/cpu-usage", controllers.CpuUsageService)
 		systemMonitorGroup.GET("/system-info", controllers.SystemInfoService)
 		systemMonitorGroup.GET("/cpu-temperature", controllers.CpuTemperatureService)
-        systemMonitorGroup.GET("/shutdown", controllers.ShutdownSystemService)
+        systemMonitorGroup.POST("/shutdown", controllers.ShutdownSystemService)
     }
 
     // Aquí puedes definir otros grupos de rutas para otras aplicaciones en el futuro
