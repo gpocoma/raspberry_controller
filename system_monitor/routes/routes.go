@@ -7,7 +7,7 @@ import (
 
 func SetupSystemMonitorRoutes(r *gin.Engine) {
     // Grupo de rutas para system_monitor
-    systemMonitorGroup := r.Group("/system_monitor")
+    systemMonitorGroup := r.Group("/system-monitor")
     {
         systemMonitorGroup.GET("/", controllers.TestService)
         systemMonitorGroup.GET("/ram-usage", controllers.RamUsageService)
