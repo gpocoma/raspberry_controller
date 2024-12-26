@@ -6,7 +6,6 @@ import (
 )
 
 func SetupMinidlnaRoutes(r *gin.Engine) {
-    // Grupo de rutas para stats_app
     minidlnaGroup := r.Group("/minidlna")
     {
         minidlnaGroup.GET("/", controllers.MinidlnaStatusService)

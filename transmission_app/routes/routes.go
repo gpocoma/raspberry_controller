@@ -6,7 +6,6 @@ import (
 )
 
 func SetupTransmissionRoutes(r *gin.Engine) {
-    // Grupo de rutas para stats_app
     transmissionGroup := r.Group("/transmission")
     {
         transmissionGroup.GET("/", controllers.TransmissionStatusService)

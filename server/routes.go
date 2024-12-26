@@ -2,14 +2,14 @@ package server
 
 import (
     "github.com/gin-gonic/gin"
-    statsRoutes "raspberry-controller/stats_app/routes"
+    systemMonitorRoutes "raspberry-controller/system_monitor/routes"
     transmissionRoutes "raspberry-controller/transmission_app/routes"
     minidlnaRoutes "raspberry-controller/minidlna_app/routes"
 )
 
 func SetupRoutes(r *gin.Engine) {
-    // Configurar las rutas para stats_app
-    statsRoutes.SetupStatsRoutes(r)
+    // Configurar las rutas para system_monitor
+    systemMonitorRoutes.SetupSystemMonitorRoutes(r)
 
     // Configurar las rutas para transmission_app
     transmissionRoutes.SetupTransmissionRoutes(r)

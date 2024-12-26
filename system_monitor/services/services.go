@@ -6,6 +6,9 @@ import (
     "github.com/shirou/gopsutil/mem"
     "github.com/shirou/gopsutil/host"
     "time"
+    "os/exec"
+    "runtime"
+    "errors"
 )
 
 func GetRamUsage() (map[string]interface{}, error) {
@@ -68,4 +71,16 @@ func GetCpuTemperature() (map[string]interface{}, error) {
     }
 
     return nil, fmt.Errorf("CPU temperature sensor not found")
+}
+
+func ShutdownSystem() error {
+    if runtime.GOOS != "linux" {
+        return errors.New("unsupported operating system")
+    }
+    go func() {
+        cmd := exec.Command("sudo", "shutdown", "now")
+        cmd.Run()
+    }()
+
+    return nil
 }
