@@ -7,7 +7,7 @@ import (
 )
 
 func TransmissionStatusService(context *gin.Context) {
-    active, err := services.GetStatus()
+    status, err := services.GetStatus()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -15,11 +15,11 @@ func TransmissionStatusService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{"active": active})
+    context.JSON(http.StatusOK, status)
 }
 
 func StartTransmissionService(context *gin.Context) {
-    err := services.StartTransmission()
+    message, err := services.StartTransmission()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -27,11 +27,11 @@ func StartTransmissionService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{"message": "Transmission started successfully"})
+    context.JSON(http.StatusOK, message)
 }
 
 func StopTransmissionService(context *gin.Context) {
-    err := services.StopTransmission()
+    message, err := services.StopTransmission()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -39,5 +39,5 @@ func StopTransmissionService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{"message": "Transmission stopped successfully"})
+    context.JSON(http.StatusOK, message)
 }

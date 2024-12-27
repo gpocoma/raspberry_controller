@@ -7,7 +7,7 @@ import (
 )
 
 func MinidlnaStatusService(context *gin.Context) {
-    active, err := services.GetStatus()
+    status, err := services.GetStatus()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -15,11 +15,11 @@ func MinidlnaStatusService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{"active": active})
+    context.JSON(http.StatusOK, status)
 }
 
 func StartMinidlnaService(context *gin.Context) {
-    err := services.StartMinidlna()
+    message, err := services.StartMinidlna()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -27,11 +27,11 @@ func StartMinidlnaService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{"message": "Minidlna started successfully"})
+    context.JSON(http.StatusOK, message)
 }
 
 func StopMinidlnaService(context *gin.Context) {
-    err := services.StopMinidlna()
+    message, err := services.StopMinidlna()
     if err != nil {
         context.JSON(http.StatusInternalServerError, gin.H{
             "error": err.Error(),
@@ -39,5 +39,5 @@ func StopMinidlnaService(context *gin.Context) {
         return
     }
 
-    context.JSON(http.StatusOK, gin.H{"message": "Minidlna stopped successfully"})
+    context.JSON(http.StatusOK, message)
 }

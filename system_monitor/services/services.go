@@ -9,68 +9,69 @@ import (
     "os/exec"
     "runtime"
     "errors"
+    "raspberry-controller/system_monitor/models"
 )
 
-func GetRamUsage() (map[string]interface{}, error) {
+func GetRamUsage() (models.RamUsage, error) {
     v, err := mem.VirtualMemory()
     if err != nil {
-        return nil, err
+        return models.RamUsage{}, err
     }
 
-    return map[string]interface{}{
-        "totalMB":     v.Total / 1024 / 1024,
-        "usedMB":      v.Used / 1024 / 1024,
-        "freeMB":      v.Free / 1024 / 1024,
-        "usedPercent": v.UsedPercent,
+    return models.RamUsage{
+        TotalMB:     v.Total / 1024 / 1024,
+        UsedMB:      v.Used / 1024 / 1024,
+        FreeMB:      v.Free / 1024 / 1024,
+        UsedPercent: v.UsedPercent,
     }, nil
 }
 
-func GetCpuUsage() (map[string]interface{}, error) {
+func GetCpuUsage() (models.CpuUsage, error) {
     percentages, err := cpu.Percent(1*time.Second, false)
     if err != nil {
-        return nil, err
+        return models.CpuUsage{}, err
     }
 
-    return map[string]interface{}{
-        "cpuUsagePercent": percentages[0],
+    return models.CpuUsage{
+        CpuUsagePercent: percentages[0],
     }, nil
 }
 
-func GetSystemInfo() (map[string]interface{}, error) {
+func GetSystemInfo() (models.SystemInfo, error) {
     info, err := host.Info()
     if err != nil {
-        return nil, err
+        return models.SystemInfo{}, err
     }
 
-    return map[string]interface{}{
-        "hostname":       info.Hostname,
-        "uptime":         info.Uptime,
-        "bootTime":       info.BootTime,
-        "os":             info.OS,
-        "platform":       info.Platform,
-        "platformFamily": info.PlatformFamily,
-        "platformVersion": info.PlatformVersion,
-        "kernelVersion":  info.KernelVersion,
-        "virtualizationSystem": info.VirtualizationSystem,
-        "virtualizationRole":   info.VirtualizationRole,
+    return models.SystemInfo{
+        Hostname:            info.Hostname,
+        Uptime:              info.Uptime,
+        BootTime:            info.BootTime,
+        OS:                  info.OS,
+        Platform:            info.Platform,
+        PlatformFamily:      info.PlatformFamily,
+        PlatformVersion:     info.PlatformVersion,
+        KernelVersion:       info.KernelVersion,
+        VirtualizationSystem: info.VirtualizationSystem,
+        VirtualizationRole:   info.VirtualizationRole,
     }, nil
 }
 
-func GetCpuTemperature() (map[string]interface{}, error) {
+func GetCpuTemperature() (models.CpuTemperature, error) {
     sensors, err := host.SensorsTemperatures()
     if err != nil {
-        return nil, err
+        return models.CpuTemperature{}, err
     }
 
     for _, sensor := range sensors {
         if sensor.SensorKey == "cpu_thermal" {
-            return map[string]interface{}{
-                "cpuTemperature": sensor.Temperature,
+            return models.CpuTemperature{
+                CpuTemperature: sensor.Temperature,
             }, nil
         }
     }
 
-    return nil, fmt.Errorf("CPU temperature sensor not found")
+    return models.CpuTemperature{}, fmt.Errorf("CPU temperature sensor not found")
 }
 
 func ShutdownSystem() error {
