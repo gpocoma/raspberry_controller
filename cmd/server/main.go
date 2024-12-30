@@ -4,7 +4,7 @@ import (
     "fmt"
     "log"
     "os"
-	"net/http"
+    "net/http"
     "path/filepath"
 
     "github.com/gin-gonic/gin"
@@ -20,6 +20,7 @@ func main() {
 
     // Obtener el directorio del ejecutable
     execDir := filepath.Dir(execPath)
+    fmt.Println("Directorio del ejecutable:", execDir)
 
     // Construir las rutas relativas a los archivos .env y config.json
     envFiles := []string{
@@ -29,27 +30,35 @@ func main() {
     }
 
     configFiles := []string{
-        filepath.Join(execDir, "../docker/minidlna/config.json"),
-        filepath.Join(execDir, "../docker/transmission/config.json"),
+        filepath.Join(execDir, "../config/minidlna/config.json"),
+        filepath.Join(execDir, "../config/transmission/config.json"),
         // Agrega más rutas a archivos config.json según sea necesario
     }
 
     // Verificar si los archivos .env necesarios existen y generarlos si no existen
+    allEnvFilesPresent := true
     for i, envFilePath := range envFiles {
         if _, err := os.Stat(envFilePath); os.IsNotExist(err) {
             fmt.Printf("El archivo %s no existe. Intentando generar desde config.json.\n", envFilePath)
             config, err := loadConfig(configFiles[i])
             if err != nil {
                 fmt.Printf("Error al cargar el archivo %s: %v\n", configFiles[i], err)
-                return
+                allEnvFilesPresent = false
+                break
             }
             err = createEnvFile(envFilePath, config)
             if err != nil {
                 fmt.Printf("Error al crear el archivo %s: %v\n", envFilePath, err)
-                return
+                allEnvFilesPresent = false
+                break
             }
             fmt.Printf("Archivo %s generado correctamente.\n", envFilePath)
         }
+    }
+
+    if !allEnvFilesPresent {
+        log.Fatal("No se pudieron generar todos los archivos .env necesarios.")
+        return
     }
 
     fmt.Println("Todos los archivos .env están presentes.")

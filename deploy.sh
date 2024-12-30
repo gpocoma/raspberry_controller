@@ -17,10 +17,10 @@ echo "Deteniendo el daemon raspberry-controller..."
 sshpass -p "$SSHPASS" ssh $RPI_USER@$RPI_HOST 'sudo systemctl stop raspberry-controller' && \
 echo "Daemon detenido." && \
 
-# Hacer pull de la rama master
-echo "Actualizando el repositorio..."
-sshpass -p "$SSHPASS" ssh $RPI_USER@$RPI_HOST "cd $RPI_DIR && git pull origin master" && \
-echo "Repositorio actualizado." && \
+# Copiar el contenido de la carpeta build local a la carpeta build en el Raspberry Pi
+echo "Copiando el contenido de la carpeta build..."
+sshpass -p "$SSHPASS" scp -r ./build/* $RPI_USER@$RPI_HOST:$RPI_DIR/build/ && \
+echo "Contenido copiado." && \
 
 # Reiniciar el servicio
 echo "Reiniciando el servicio raspberry-controller..."

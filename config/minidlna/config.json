@@ -2,6 +2,6 @@
     "variables": {
         "MINIDLNA_MEDIA_DIR_2": { "ejemplo" : "/media/video" },
         "MINIDLNA_FRIENDLY_NAME": { "ejemplo" : "RPi DLNA" },
-        "MINIDLNA_VOLUME": { "ejemplo" : "/home/pi/Seagate/Multimedia/Videos:/media/video" }
+        "MINIDLNA_VOLUME": { "ejemplo" : "/home/pi/Seagate/Multimedia/Videos" }
     }
 }
