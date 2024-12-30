@@ -26,12 +26,14 @@ func main() {
     envFiles := []string{
         filepath.Join(execDir, "../docker/minidlna/.env"),
         filepath.Join(execDir, "../docker/transmission/.env"),
+        filepath.Join(execDir, "../docker/postgresql/.env"),
         // Agrega más rutas a archivos .env según sea necesario
     }
 
     configFiles := []string{
         filepath.Join(execDir, "../config/minidlna/config.json"),
         filepath.Join(execDir, "../config/transmission/config.json"),
+        filepath.Join(execDir, "../config/postgresql/config.json"),
         // Agrega más rutas a archivos config.json según sea necesario
     }
 

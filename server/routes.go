@@ -5,6 +5,7 @@ import (
     systemMonitorRoutes "raspberry-controller/system_monitor/routes"
     transmissionRoutes "raspberry-controller/transmission_app/routes"
     minidlnaRoutes "raspberry-controller/minidlna_app/routes"
+    postgresqlRoutes "raspberry-controller/postgresql_app/routes"
 )
 
 func SetupRoutes(r *gin.Engine) {
@@ -16,4 +17,7 @@ func SetupRoutes(r *gin.Engine) {
 
     // Configurar las rutas para minidlna_app
     minidlnaRoutes.SetupMinidlnaRoutes(r)
+
+    // Configurar las rutas para postgresql_app
+    postgresqlRoutes.SetupPostgreSQLRoutes(r)
 }

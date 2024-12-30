@@ -1,0 +1,16 @@
+{
+    "variables": {
+        "POSTGRES_USER": {
+            "ejemplo": "galo"
+        },
+        "POSTGRES_PASSWORD": {
+            "ejemplo": "contrasena"
+        },
+        "POSTGRES_DB": {
+            "ejemplo": "postgres"
+        },
+        "POSTGRES_VOLUME": {
+            "ejemplo": "/home/Seagate/Databases/PostgreSQL"
+        }
+    }
+}
