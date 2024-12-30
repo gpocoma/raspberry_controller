@@ -50,7 +50,7 @@ func StartTransmission() (models.TransmissionMessage, error) {
 
     // Iniciar el contenedor utilizando docker-compose
     cmd := exec.Command("docker-compose", "up", "-d", "transmission")
-    cmd.Dir = "/home/pi/transmission" // Reemplaza con la ruta correcta a tu archivo docker-compose.yml
+    cmd.Dir = "/home/pi/docker/transmission"
 
     output, err := cmd.CombinedOutput()
     if err != nil {
@@ -78,7 +78,7 @@ func StopTransmission() (models.TransmissionMessage, error) {
 
     // Detener el contenedor utilizando docker-compose
     cmd := exec.Command("docker-compose", "down")
-    cmd.Dir = "/home/pi/transmission" // Reemplaza con la ruta correcta a tu archivo docker-compose.yml
+    cmd.Dir = "/home/pi/docker/transmission"
 
     output, err := cmd.CombinedOutput()
     if err != nil {

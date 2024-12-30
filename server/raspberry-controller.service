@@ -1,0 +1,13 @@
+[Unit]
+Description=Raspberry Controller Service
+After=network.target
+
+[Service]
+ExecStart=/home/pi/raspberry_controller/build/raspberry-controller
+WorkingDirectory=/home/pi/raspberry_controller
+Restart=always
+RestartSec=5
+User=pi
+
+[Install]
+WantedBy=multi-user.target

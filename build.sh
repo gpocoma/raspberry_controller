@@ -4,7 +4,7 @@
 mkdir -p build
 
 # Compilar el binario para la Raspberry Pi y guardarlo en la carpeta build
-GOARCH=arm GOOS=linux go build -o build/raspberry-controller cmd/server/main.go
+GOARCH=arm GOOS=linux go build -o build/raspberry-controller ./cmd/server
 
 # Verificar si la compilación fue exitosa
 if [ $? -eq 0 ]; then

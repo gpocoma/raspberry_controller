@@ -7,17 +7,22 @@ read SSHPASS
 stty echo
 echo
 
+# Dirección IP y usuario del Raspberry Pi
+RPI_USER="pi"
+RPI_HOST="192.178.0.114"
+RPI_DIR="/home/pi/raspberry-controller"
+
 # Detener el daemon raspberry-controller
 echo "Deteniendo el daemon raspberry-controller..."
-sshpass -p "$SSHPASS" ssh pi@192.178.0.114 'sudo systemctl stop raspberry-controller' && \
+sshpass -p "$SSHPASS" ssh $RPI_USER@$RPI_HOST 'sudo systemctl stop raspberry-controller' && \
 echo "Daemon detenido." && \
 
-# Copiar el nuevo controlador
-echo "Copiando el nuevo controlador..."
-sshpass -p "$SSHPASS" scp build/raspberry-controller pi@192.178.0.114:/home/pi/raspberry-controller && \
-echo "Controlador copiado." && \
+# Hacer pull de la rama master
+echo "Actualizando el repositorio..."
+sshpass -p "$SSHPASS" ssh $RPI_USER@$RPI_HOST "cd $RPI_DIR && git pull origin master" && \
+echo "Repositorio actualizado." && \
 
 # Reiniciar el servicio
 echo "Reiniciando el servicio raspberry-controller..."
-sshpass -p "$SSHPASS" ssh pi@192.178.0.114 'sudo systemctl start raspberry-controller' && \
+sshpass -p "$SSHPASS" ssh $RPI_USER@$RPI_HOST 'sudo systemctl start raspberry-controller' && \
 echo "Servicio reiniciado."

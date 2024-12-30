@@ -2,7 +2,7 @@ services:
   api-raspberry:
     container_name: api-raspberry
     build:
-      context: ..
+      context: .
       dockerfile: DockerfileDevContainer
     volumes:
       - ../../.:/app

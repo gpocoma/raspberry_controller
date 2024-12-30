@@ -1,0 +1,13 @@
+services:
+  minidlna:
+    image: vladgh/minidlna
+    container_name: minidlna
+    restart: unless-stopped
+    network_mode: host
+    env_file:
+      - ../../config/minidlna/.env
+    volumes:
+      - ${MINIDLNA_VOLUME}
+    environment:
+      MINIDLNA_MEDIA_DIR_2: ${MINIDLNA_MEDIA_DIR_2}
+      MINIDLNA_FRIENDLY_NAME: ${MINIDLNA_FRIENDLY_NAME}

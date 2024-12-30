@@ -1,0 +1,12 @@
+{
+    "variables": {
+        "PUID": { "ejemplo": "1000" },
+        "PGID": { "ejemplo": "1000" },
+        "TZ": { "ejemplo": "Etc/UTC" },
+        "USER": { "ejemplo": "pi" },
+        "PASS": { "ejemplo": "raspberry" },
+        "TRANSMISSION_CONFIG": { "ejemplo": "/home/pi/Seagate/Downloads/transmission/data" },
+        "TRANSMISSION_DOWNLOADS": { "ejemplo": "/home/pi/Seagate/Downloads/transmission/downloads" },
+        "TRANSMISSION_WATCH": { "ejemplo": "/home/pi/Seagate/Downloads/transmission/watch" }
+    }
+}
