@@ -10,7 +10,7 @@ echo
 # Dirección IP y usuario del Raspberry Pi
 RPI_USER="pi"
 RPI_HOST="192.178.0.114"
-RPI_DIR="/home/pi/raspberry-controller"
+RPI_DIR="/home/pi/raspberry_controller"
 
 # Detener el daemon raspberry-controller
 echo "Deteniendo el daemon raspberry-controller..."

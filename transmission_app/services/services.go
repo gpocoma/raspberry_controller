@@ -27,7 +27,7 @@ func GetStatus() (models.TransmissionStatus, error) {
     // Verificar si el contenedor 'transmission' está en ejecución
     for _, ctr := range containers {
         for _, name := range ctr.Names {
-            if strings.Contains(name, "transmission") {
+            if name == "/transmission" || name == "transmission" {
                 return models.TransmissionStatus{Active: true}, nil
             }
         }
