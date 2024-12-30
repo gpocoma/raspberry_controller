@@ -23,14 +23,14 @@ func main() {
 
     // Construir las rutas relativas a los archivos .env y config.json
     envFiles := []string{
-        filepath.Join(execDir, "../config/minidlna/.env"),
-        filepath.Join(execDir, "../config/transmission/.env"),
+        filepath.Join(execDir, "../docker/minidlna/.env"),
+        filepath.Join(execDir, "../docker/transmission/.env"),
         // Agrega más rutas a archivos .env según sea necesario
     }
 
     configFiles := []string{
-        filepath.Join(execDir, "../config/minidlna/config.json"),
-        filepath.Join(execDir, "../config/transmission/config.json"),
+        filepath.Join(execDir, "../docker/minidlna/config.json"),
+        filepath.Join(execDir, "../docker/transmission/config.json"),
         // Agrega más rutas a archivos config.json según sea necesario
     }
 

@@ -49,7 +49,7 @@ func StartMinidlna() (models.MinidlnaMessage, error) {
     }
 
     // Iniciar el contenedor utilizando docker-compose
-    cmd := exec.Command("docker-compose", "up", "-d", "minidlna")
+    cmd := exec.Command("docker", "compose", "up", "-d", "minidlna")
     cmd.Dir = "/home/pi/docker/minidlna"
 
     output, err := cmd.CombinedOutput()
@@ -77,7 +77,7 @@ func StopMinidlna() (models.MinidlnaMessage, error) {
     }
 
     // Detener el contenedor utilizando docker-compose
-    cmd := exec.Command("docker-compose", "down")
+    cmd := exec.Command("docker", "compose", "down")
     cmd.Dir = "/home/pi/docker/minidlna"
 
     output, err := cmd.CombinedOutput()

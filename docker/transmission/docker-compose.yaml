@@ -4,7 +4,7 @@ services:
     container_name: transmission
     restart: unless-stopped
     env_file:
-      - ../../config/transmission/.env
+      - .env
     volumes:
       - ${TRANSMISSION_CONFIG}:/config
       - ${TRANSMISSION_DOWNLOADS}:/downloads
