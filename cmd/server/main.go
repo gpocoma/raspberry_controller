@@ -20,7 +20,6 @@ func main() {
 
     // Obtener el directorio del ejecutable
     execDir := filepath.Dir(execPath)
-    fmt.Println("Directorio del ejecutable:", execDir)
 
     // Construir las rutas relativas a los archivos .env y config.json
     envFiles := []string{
