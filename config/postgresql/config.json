@@ -10,7 +10,7 @@
             "ejemplo": "postgres"
         },
         "POSTGRES_VOLUME": {
-            "ejemplo": "/home/Seagate/Databases/PostgreSQL"
+            "ejemplo": "/home/pi/Seagate/Databases/PostgreSQL"
         }
     }
 }
