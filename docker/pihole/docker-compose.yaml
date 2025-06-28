@@ -10,7 +10,7 @@ services:
       - "443:443/tcp"
     environment:
       - TZ=${TZ}
-      - WEBPASSWORD=${WEBPASSWORD}
+      - FTLCONF_webserver_api_password=${WEBPASSWORD}
     volumes:
       - ${PIHOLE_VOLUMES}:/etc/pihole
       - ${PIHOLE_DNSMASQ_VOLUMES}:/etc/dnsmasq.d
