@@ -10,10 +10,11 @@ services:
       - "443:443/tcp"
     environment:
       - TZ=${TZ}
-      - WEBPASSWORD=raspberry
-      - DNS_LISTENING_MODE=all
-      - SERVER_IP=192.178.0.114
-      - IPV6_ADDRESS=fd75:44:3c49::114
+      - WEBPASSWORD=${WEBPASSWORD}
+      - DNS_LISTENING_MODE=${DNS_LISTENING_MODE}
+      - DNSMASQ_LISTENING_MODE=${DNSMASQ_LISTENING_MODE}
+      - SERVER_IP=${SERVER_IPV4}
+      - IPV6_ADDRESS=${SERVER_IPV6}
     volumes:
       - ${PIHOLE_VOLUMES}:/etc/pihole
       - ${PIHOLE_DNSMASQ_VOLUMES}:/etc/dnsmasq.d
