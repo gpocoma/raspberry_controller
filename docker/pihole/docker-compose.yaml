@@ -1,7 +1,7 @@
 services:
   pihole:
-    image: pihole/pihole:latest
     container_name: pihole
+    image: pihole/pihole:latest
     restart: unless-stopped
     ports:
       - "53:53/tcp"
@@ -9,11 +9,12 @@ services:
       - "80:80/tcp"
       - "443:443/tcp"
     environment:
-      - TZ=${TZ}
-      - FTLCONF_webserver_api_password=${WEBPASSWORD}
+      - TZ: ${TZ}
+      - FTLCONF_webserver_api_password: ${WEBPASSWORD}
+      - FTLCONF_dns_listening_mode: ${DNS_LISTENING_MODE}
     volumes:
       - ${PIHOLE_VOLUMES}:/etc/pihole
-      - ${PIHOLE_DNSMASQ_VOLUMES}:/etc/dnsmasq.d
+      # - ${PIHOLE_DNSMASQ_VOLUMES}:/etc/dnsmasq.d
     cap_add:
       - NET_ADMIN
 
